@@ -27,6 +27,5 @@ func findMid(arr []int, l, r int) int {
 		}
 	}
 	arr[l], arr[i] = arr[i], arr[l]
-	fmt.Println(arr)
 	return i
 }
