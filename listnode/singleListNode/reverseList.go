@@ -50,7 +50,9 @@ func reverse(head *ListNode) *ListNode {
 	}
 	//一直递归找到最后一个元素，则当前的head 就是倒数第二个元素。把第二个放到最后。然后，next=nil
 	last := reverse(head.next)
+	//反转核心代码，
 	head.next.next = head
+	//防止产生环
 	head.next = nil
 	return last
 }
