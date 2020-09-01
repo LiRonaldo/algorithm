@@ -106,4 +106,23 @@ func (this *BinTree) delete(v int) {
 		return
 	}
 	//如果要删除的节点有两个子节点
+	if this.Left != nil && this.Right != nil {
+		min := this.Right
+		minp := this
+		//从右节点开始，一直找左边的，找到左边最后一个节点(为什么？思考二叉查找树的特点)
+		for min.Left != nil {
+			minp = min
+			min = min.Left
+		}
+		//将左边找到最小的值赋给要删除的点。
+		this.Data = min.Data
+		//如果左边你最小的节点没有子节点的话，代码到上边就结束了。
+		//下边的代码是将左边的最小节点之后的节点作出相应的调整。
+		if minp.Right != min {
+			//因为一直走的是左边，所以只会进到这个这个if，将左边最小的节点的右节点整个赋值给父节点的左节点（因为左节点赋给了要删除的节点了，所以空掉了）
+			minp.Left = min.Right
+		} else {
+			minp.Right = min.Right
+		}
+	}
 }
