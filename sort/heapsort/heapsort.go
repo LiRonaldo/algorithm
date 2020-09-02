@@ -42,7 +42,8 @@ func handlHeap(arr []int, n, i int) {
 	if right < n && arr[right] > arr[max] {
 		max = right
 	}
-
+	//如果顶节点不是最大，那么交换，因为已经是大根堆了，所以只需要将左右子节点中最大的和顶节点交换
+	//这样顶节点最小被左右最大的交换了，然后从max（就是左右子节点中最大的）处再开始调整，变成大根堆
 	if max != i {
 		arr[i], arr[max] = arr[max], arr[i]
 		handlHeap(arr, n, max)
