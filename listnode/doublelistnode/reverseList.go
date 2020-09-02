@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 /**
-双向链表
+双向链表 写的不对
 */
 type Element interface {
 }
