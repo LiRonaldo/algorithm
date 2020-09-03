@@ -86,6 +86,20 @@ func SequenceTraversal(t *Tree) []int {
 	}
 	return result
 }
+
+/**
+二叉树翻转，也就是镜像，用递归，从根节点开始先翻，在从左节点开始一直到递归出口，在翻转右一直到递归出口
+*/
+func reserve(t *Tree) *Tree {
+	if t == nil || (t.right == nil && t.left == nil) {
+		return nil
+	}
+	t.right, t.left = t.left, t.right
+	reserve(t.left)
+	reserve(t.right)
+	return t
+}
+
 func main() {
 	root := creat(4)
 	root.left = creat(2)
@@ -100,4 +114,7 @@ func main() {
 	//after(root)
 	rsult := SequenceTraversal(root)
 	fmt.Println(rsult)
+	t := reserve(root)
+	rsult1 := SequenceTraversal(t)
+	fmt.Println(rsult1)
 }
