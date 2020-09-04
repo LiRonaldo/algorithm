@@ -3,6 +3,7 @@ package main
 import (
 	"algorithm/tree/queue"
 	"fmt"
+	"math"
 )
 
 /**
@@ -132,6 +133,16 @@ func findMax(t *Tree) int {
 	}
 	return max
 }
+
+/**
+求树的最大深度，最大高度，最大层数，都是一样的，如果求某一个节点的话，要区分从上数，从下数。
+*/
+func maxDeep(t *Tree) float64 {
+	if t == nil {
+		return 0
+	}
+	return math.Max(1+maxDeep(t.left), 1+maxDeep(t.right))
+}
 func main() {
 	root := creat(4)
 	root.left = creat(2)
@@ -151,4 +162,6 @@ func main() {
 	fmt.Println(rsult1)
 	v := findMax(root)
 	fmt.Println(v)
+	deep := maxDeep(t)
+	fmt.Println(deep)
 }
