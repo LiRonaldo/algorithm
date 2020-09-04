@@ -100,6 +100,30 @@ func reserve(t *Tree) *Tree {
 	return t
 }
 
+/**
+求二叉树最大值 ,层序遍历，借助队列，找最大的.
+*/
+func findMax(t *Tree) int {
+	max := t.data
+	queue := &queue.Queue{}
+	queue.Push(t)
+	for !queue.IsEmpty() {
+		t := queue.Pop()
+		switch curT := t.(type) {
+		case *Tree:
+			if curT.data > max {
+				max = curT.data
+			}
+			if curT.right != nil {
+				queue.Push(curT.right)
+			}
+			if curT.left != nil {
+				queue.Push(curT.left)
+			}
+		}
+	}
+	return max
+}
 func main() {
 	root := creat(4)
 	root.left = creat(2)
@@ -117,4 +141,6 @@ func main() {
 	t := reserve(root)
 	rsult1 := SequenceTraversal(t)
 	fmt.Println(rsult1)
+	v := findMax(root)
+	fmt.Println(v)
 }
