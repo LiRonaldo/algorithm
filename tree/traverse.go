@@ -143,6 +143,16 @@ func maxDeep(t *Tree) float64 {
 	}
 	return math.Max(1+maxDeep(t.left), 1+maxDeep(t.right))
 }
+
+/**
+求树的最小深度，最小高度，最小层数，都是一样的，如果求某一个节点的话，要区分从上数，从下数。
+*/
+func minDeep(t *Tree) float64 {
+	if t == nil {
+		return 0
+	}
+	return math.Min(1+maxDeep(t.left), 1+maxDeep(t.right))
+}
 func main() {
 	root := creat(4)
 	root.left = creat(2)
@@ -162,6 +172,6 @@ func main() {
 	fmt.Println(rsult1)
 	v := findMax(root)
 	fmt.Println(v)
-	deep := maxDeep(t)
+	deep := minDeep(t)
 	fmt.Println(deep)
 }
