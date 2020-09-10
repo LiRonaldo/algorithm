@@ -14,8 +14,11 @@ func main() {
 	head := &ListNode{}
 	createListNode(3, head)
 	sout(head)
-	pre := reverse(head)
-	sout(pre)
+	//pre := reverse(head)
+	//sout(pre)
+	delete(head, 1)
+	sout(head)
+
 }
 func createListNode(n int, node *ListNode) {
 	cur := node
@@ -55,4 +58,24 @@ func reverse(head *ListNode) *ListNode {
 	//防止产生环
 	head.next = nil
 	return last
+}
+
+/**
+删除某个节点.
+*/
+func delete(node *ListNode, v interface{}) {
+	var preNode *ListNode = nil
+	for node.next != nil {
+		preNode = node
+		node = node.next
+		if node.data == v {
+			//是最后一个节点
+			if node.next == nil {
+				preNode.next = nil
+			} else {
+				//不是最后一个节点
+				preNode.next = node.next
+			}
+		}
+	}
 }
