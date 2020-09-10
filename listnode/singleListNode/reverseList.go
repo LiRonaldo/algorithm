@@ -79,3 +79,21 @@ func delete(node *ListNode, v interface{}) {
 		}
 	}
 }
+
+/**
+判断链表是否有环，两个指针，一个块，一个慢，如果块的追上慢的，或者，快的在慢点后边。
+*/
+func circulation(t *ListNode) bool {
+	slow := t
+	fast := t
+	for {
+		if slow == nil || fast == nil {
+			return false
+		} else if fast == slow || fast.next == slow {
+			return true
+		} else {
+			slow = slow.next
+			fast = fast.next.next
+		}
+	}
+}
