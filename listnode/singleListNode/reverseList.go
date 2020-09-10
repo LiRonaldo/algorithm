@@ -6,18 +6,21 @@ import "fmt"
 单链表反转
 */
 type ListNode struct {
-	data interface{}
+	data int
 	next *ListNode
 }
 
 func main() {
 	head := &ListNode{}
-	createListNode(3, head)
-	sout(head)
+	head1 := &ListNode{}
+	createListNode(2, head)
+	createListNode(2, head1)
+	//sout(head)
 	//pre := reverse(head)
 	//sout(pre)
-	delete(head, 1)
-	sout(head)
+	//delete(head, 1)
+	node := merger(head, head1)
+	sout(node)
 
 }
 func createListNode(n int, node *ListNode) {
@@ -96,4 +99,25 @@ func circulation(t *ListNode) bool {
 			fast = fast.next.next
 		}
 	}
+}
+
+/**
+合并两个有序，单链表。
+*/
+func merger(t1 *ListNode, t2 *ListNode) *ListNode {
+	if t1 == nil {
+		return t2
+	}
+	if t2 == nil {
+		return t1
+	}
+	var mergerNode *ListNode = nil
+	if t1.data > t2.data {
+		mergerNode = t2
+		mergerNode.next = merger(t1, t2.next)
+	} else {
+		mergerNode = t1
+		mergerNode.next = merger(t1.next, t2)
+	}
+	return mergerNode
 }
