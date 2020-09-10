@@ -11,23 +11,25 @@ type ListNode struct {
 }
 
 func main() {
-	head := &ListNode{}
-	head1 := &ListNode{}
-	createListNode(2, head)
-	createListNode(2, head1)
+	head := &ListNode{data: 1}
+	//head1 := &ListNode{}
+	createListNode(10, head)
+	//createListNode(2, head1)
 	//sout(head)
 	//pre := reverse(head)
 	//sout(pre)
 	//delete(head, 1)
-	node := merger(head, head1)
-	sout(node)
+	//node := merger(head, head1)
+	//sout(node)
+	sout(head)
+	reciprocalDel(head, 10)
+	sout(head)
 
 }
 func createListNode(n int, node *ListNode) {
 	cur := node
 	for i := 1; i <= n; i++ {
-		cur.next = &ListNode{}
-		cur.data = i
+		cur.next = &ListNode{data: i + 1}
 		cur = cur.next
 	}
 }
@@ -92,7 +94,7 @@ func circulation(t *ListNode) bool {
 	for {
 		if slow == nil || fast == nil {
 			return false
-		} else if fast == slow || fast.next == slow {
+		} else if fast == slow || fast.next == slow { //fast在slow后边，环也就是slow。
 			return true
 		} else {
 			slow = slow.next
@@ -102,7 +104,7 @@ func circulation(t *ListNode) bool {
 }
 
 /**
-合并两个有序，单链表。
+合并两个有序，单链表。递归。
 */
 func merger(t1 *ListNode, t2 *ListNode) *ListNode {
 	if t1 == nil {
@@ -120,4 +122,25 @@ func merger(t1 *ListNode, t2 *ListNode) *ListNode {
 		mergerNode.next = merger(t1.next, t2)
 	}
 	return mergerNode
+}
+
+/**
+删除倒数第k个元素。利用两个指针，i指针先走k，j指针在开始走，当i走到头的时候，j后边的第一个元素就是要删除的。
+*/
+func reciprocalDel(t *ListNode, v int) {
+	if t == nil {
+		return
+	}
+	fast := t
+	slow := t
+	var i int = 1
+	for i <= v {
+		i++
+		fast = fast.next
+	}
+	for fast.next != nil {
+		fast = fast.next
+		slow = slow.next
+	}
+	slow.next = slow.next.next
 }
