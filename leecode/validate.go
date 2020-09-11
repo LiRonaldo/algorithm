@@ -58,7 +58,3 @@ func validate() bool {
 	}
 	return false
 }
-
-func delete() {
-	return
-}
