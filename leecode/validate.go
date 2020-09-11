@@ -6,13 +6,16 @@ import (
 	"strings"
 )
 
+/**
+有效括号，模拟一个 栈。利用先进后出。
+*/
 func main() {
 	b := validate()
 	fmt.Println(b)
 }
 
 func validate() bool {
-	var s = "{}[]"
+	var s = "{[]}"
 	stack := &stack.Stack{}
 	for i := 0; i < len(s); i++ {
 		if strings.Compare(string(s[i]), "{") == 0 {
@@ -54,4 +57,8 @@ func validate() bool {
 		}
 	}
 	return false
+}
+
+func delete() {
+	return
 }
