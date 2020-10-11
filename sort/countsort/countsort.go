@@ -17,11 +17,11 @@ func main() {
 	sortarr1 := sort1(arr)
 	print(sortarr1)*/
 	arr := []int{101, 109, 107, 103, 108, 102, 103, 110, 107, 103}
-	/*fmt.Println(arr)
+	fmt.Println(arr)
 	sortArr := sort2(arr)
-	fmt.Println(sortArr)*/
-	final := sort3(arr)
-	fmt.Println(final)
+	fmt.Println(sortArr)
+	//final := sort3(arr)
+	//fmt.Println(final)
 }
 
 func sort1(arr []int) []int {
@@ -69,7 +69,7 @@ func sort2(arr []int) []int {
 	var k int = 0
 	for i := 0; i < len(count); i++ {
 		for j := 0; j < count[i]; j++ {
-			result[k] = count[i] + min + i - 1
+			result[k] = i + min
 			k++
 		}
 	}

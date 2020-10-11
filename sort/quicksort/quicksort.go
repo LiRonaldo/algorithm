@@ -8,6 +8,7 @@ import "fmt"
 func main() {
 	arr := []int{6, 5, 4, 1}
 	sort(arr, 0, len(arr)-1) //注意传值是传len-1，因为下边判断用的是<=
+	fmt.Println(arr)
 }
 func sort(arr []int, l, r int) {
 	if l >= r {
