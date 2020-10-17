@@ -6,7 +6,7 @@ import "fmt"
 优化版
 */
 func main() {
-	arr := [10]int{2, 1, 5, 8, 1, 3, 48, 1, 5}
+	arr := [10]int{2, 1, 5, 8, 1, 3, 48, 1, 6, 10}
 	sort2(&arr, 10)
 	fmt.Println(arr)
 }
